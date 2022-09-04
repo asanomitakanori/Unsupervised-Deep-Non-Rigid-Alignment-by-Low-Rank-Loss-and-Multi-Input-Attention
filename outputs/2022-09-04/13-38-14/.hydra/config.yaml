@@ -1,0 +1,12 @@
+train:
+  imgs: data/train_imgs/
+  epochs: 300
+  batch_size: 8
+  lr: 0.0003
+eval:
+  imgs: data/eval_imgs/
+  rate: 0.2
+output:
+  save: true
+  dir: checkpoints/
+load: false
