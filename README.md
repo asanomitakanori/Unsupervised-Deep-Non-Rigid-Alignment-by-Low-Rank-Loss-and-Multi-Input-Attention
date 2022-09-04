@@ -6,7 +6,7 @@ PyTorch
 Hydra (hydra-core)
 
 ## Training
-You can train % validation by run.py
+You can train and validation by run.py
 ### Example
 ```
 $ python run.py
