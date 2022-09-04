@@ -31,16 +31,15 @@ class LowRankNet(nn.Module):
         self.up4_1 = Up(num*2,  num, bilinear)
         self.out_1 = OutConv(num, 1)
 
-        num_ch = 16
-        self.inc = DoubleConv(n_channels*2,  num_ch)
-        self.down1 = Conv(num_ch, num_ch*2)
-        self.down2 = Conv(num_ch*2, num_ch*2)
-        self.down3 = Conv(num_ch*2, num_ch*2)
-        self.down4 = Conv(num_ch*2, num_ch*2)
-        self.up1 = Up(num_ch*4, num_ch*2)
-        self.up2 = Up(num_ch*4, num_ch*2)
-        self.up3 = Up(num_ch*4, num_ch)
-        self.up4 = Up(num_ch*2, 8)
+        self.inc = DoubleConv(n_channels*2,  num)
+        self.down1 = Conv(num, num*2)
+        self.down2 = Conv(num*2, num*2)
+        self.down3 = Conv(num*2, num*2)
+        self.down4 = Conv(num*2, num*2)
+        self.up1 = Up(num*4, num*2)
+        self.up2 = Up(num*4, num*2)
+        self.up3 = Up(num*4, num)
+        self.up4 = Up(num*2, 8)
         self.out = DoubleConv(8, 8)
         self.flow = nn.Conv2d(8, 2, kernel_size=3, padding=1)
         self.flow.weight = nn.Parameter(Normal(0, 1e-5).sample(self.flow.weight.shape))
@@ -49,19 +48,18 @@ class LowRankNet(nn.Module):
         self.transformer = SpatialTransformer((64, 64))
         self.sigmoid = nn.Sigmoid()
 
-        num2 = 16
-        self.inc_3 = DoubleConv(n_channels, num2)
-        self.attention = MultiInputAttetnion(num2, num2)
-        self.down1_3 = Down(num2, 2*num2)
-        self.attention1 = MultiInputAttetnion(2*num2, 2*num2)
-        self.down2_3 = Down(2*num2, 4*num2)
-        self.down3_3 = Down(4*num2, 8*num2)
-        self.down4_3 = Down(8*num2, 16*num2 // factor)
-        self.up1_3 = Up(16*num2,  8*num2 // factor, bilinear)
-        self.up2_3 = Up(8*num2,  4*num2 // factor, bilinear)
-        self.up3_3 = Up(4*num2 , 2*num2 // factor, bilinear)
-        self.up4_3 = Up(2*num2, num2, bilinear)
-        self.out_3 = OutConv(num2, 1)
+        self.inc_3 = DoubleConv(n_channels, num)
+        self.attention = MultiInputAttetnion(num, num)
+        self.down1_3 = Down(num, 2*num)
+        self.attention1 = MultiInputAttetnion(2*num, 2*num)
+        self.down2_3 = Down(2*num, 4*num)
+        self.down3_3 = Down(4*num, 8*num)
+        self.down4_3 = Down(8*num, 16*num // factor)
+        self.up1_3 = Up(16*num,  8*num // factor, bilinear)
+        self.up2_3 = Up(8*num,  4*num // factor, bilinear)
+        self.up3_3 = Up(4*num , 2*num // factor, bilinear)
+        self.up4_3 = Up(2*num, num, bilinear)
+        self.out_3 = OutConv(num, 1)
 
     def forward(self, input):
         # Noise Decomposition
@@ -96,8 +94,8 @@ class LowRankNet(nn.Module):
         x = self.activation(x)
         x = self.out(x)
         x = self.activation(x)
-        flow_field = self.flow(x)
-        Aτ = self.transformer(source, flow_field)
+        τ = self.flow(x)
+        Aτ = self.transformer(source, τ)
         Aτ = torch.cat([target[0].unsqueeze(0), Aτ])
 
         # Sparse Error Complement Network
@@ -114,4 +112,4 @@ class LowRankNet(nn.Module):
         x = self.up4_3(x, x1t)
         S = self.out_3(x)
         S = self.sigmoid(S)
-        return A, Aτ, flow_field, S
+        return A, Aτ, τ, S
