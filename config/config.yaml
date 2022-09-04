@@ -1,0 +1,15 @@
+train:
+  imgs: 'data/train_imgs/'
+  epochs: 300
+  batch_size: 8
+  lr: 3e-4
+
+eval:
+  imgs: 'data/eval_imgs/'  
+  rate: 0.2                   # Evaluation rate for no eval data
+
+output:
+  save: True
+  dir: 'checkpoints/'
+
+load: False                   # If you use a trained model, please rewrite it.
