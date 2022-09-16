@@ -5,14 +5,7 @@ Python3.6
 PyTorch
 Hydra (hydra-core)
 
-## Training
-You can train and validation by run.py
-### Example
-```
-$ python run.py
-```
-
-## Train 
+## Train & Validation 
 You can train and validation by run.py
 ### Example
 ```
@@ -47,3 +40,15 @@ Please prepare your data as follows
     │       (Same structure of train_imgs. Without eval_img, part of train_img is used for evaluation)
     └── test_imgs
             (Same structure of train_imgs)
+```
+</div></details>
+
+### Arguments
+You can set up input path/output path/parameters from 
+[config/mpm_train.yaml](https://github.com/asanomitakanori/Unsupervised-Deep-Non-Rigid-Alignment-by-Low-Rank-Loss-and-Multi-Input-Attention/blob/main/config/config.yaml)
+
+## Testing (measuring Dice scores)
+To test the quality of a model by computing dice overlap between an atlas segmentation and warped test scan segmentations, run:
+```
+$ python commingsoon.py
+```
