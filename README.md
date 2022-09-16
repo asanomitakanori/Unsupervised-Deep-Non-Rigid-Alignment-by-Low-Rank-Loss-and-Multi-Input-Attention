@@ -13,6 +13,12 @@ $ python run.py
 ```
 
 ## Train 
+You can train and validation by run.py
+### Example
+```
+$ python run.py
+```
+
 ### Preparation
 Please prepare your data as follows
 
@@ -26,12 +32,12 @@ Please prepare your data as follows
     │   │   ├── 0001.pt
     │   │   ├── :
     │   │   └── n.pt
-    │   ├── erase                          # This is denoised imgs used for test. Not used for training.
+    │   ├── erase                          # Erase is denoised input imgs used for test. Not used for training.
     │   │    ├── 0000.pt
     │   │    ├── 0001.pt
     │   │    ├── :
     │   │    └── n.pt
-    │   └── transe                         # Transe is denoised & sparse complement imgs used for test. Not used for training.
+    │   └── transe                         # Transe is denoised & sparse complement input imgs used for test. Not used for training.
     │       ├── 0000.pt
     │       ├── 0001.pt
     │       ├── :
