@@ -50,5 +50,11 @@ You can set up input path/output path/parameters from
 ## Testing (measuring Dice scores)
 To test the quality of a model by computing dice overlap between an atlas segmentation and warped test scan segmentations, run:
 ```
-$ python commingsoon.py
+$ python test.py
+```
+
+## Tensorboard 
+command in teminal at working dir
+```
+tensorboard --logdir=./logs
 ```
