@@ -58,3 +58,15 @@ command in teminal at working dir
 ```
 tensorboard --logdir=./logs
 ```
+## Citaiton
+If you find the code useful for your research, please cite:
+```
+@inproceedings{asanomi2022unsupervised,
+  title={Unsupervised Deep Non-rigid Alignment by Low-Rank Loss and Multi-input Attention},
+  author={Asanomi, Takanori and Nishimura, Kazuya and Song, Heon and Hayashida, Junya and Sekiguchi, Hiroyuki and Yagi, Takayuki and Sato, Imari and Bise, Ryoma},
+  booktitle={International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI)},
+  pages={185--195},
+  year={2022},
+  organization={Springer}
+}
+```
