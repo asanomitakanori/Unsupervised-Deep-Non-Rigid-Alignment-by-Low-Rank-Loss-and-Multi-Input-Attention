@@ -1,6 +1,9 @@
 # Unsupervised Deep Robust Non-Rigid Alignment by LowRank Los and Multi Input Attention
 
 ## Requirements
+```
+$ pip install -r requirements.py
+```
 Python3.6
 PyTorch
 Hydra (hydra-core)
