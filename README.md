@@ -1,6 +1,6 @@
 # Unsupervised Deep Robust Non-Rigid Alignment by LowRank Los and Multi Input Attention
 ## Overview of our method
-![Illustration](./image/proposed_method_overview.pdf)
+![Illustration](./image/proposed_method_overview.png)
 
 ## Requirements
 ```
