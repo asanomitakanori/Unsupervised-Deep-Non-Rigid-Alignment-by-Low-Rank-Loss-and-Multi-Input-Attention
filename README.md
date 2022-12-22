@@ -2,6 +2,9 @@
 ## Overview of our method
 ![Illustration](./image/proposed_method_overview.png)
 > Overview of proposed method, which consists of three subnetworks $f_n$, $f_r$, $f_c$.
+
+We propose a deep low-rank alignment network that can simultaneously perform non-rigid alignment and noise decomposition for multiple images despite severe noise and sparse corruptions. To address this challenging task, we introduce a low-rank loss in deep learning under the assumption that a set of well-aligned, well-denoised images should be linearly correlated, and thus, that a matrix consisting of the images should be low-rank. This allows us to remove the noise and corruption from input images in a self-supervised learning manner.
+
 ## Requirements
 ```
 $ pip install -r requirements.py
