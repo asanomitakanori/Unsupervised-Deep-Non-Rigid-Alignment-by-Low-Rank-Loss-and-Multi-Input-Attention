@@ -1,5 +1,5 @@
 # Unsupervised Deep Robust Non-Rigid Alignment by LowRank Los and Multi Input Attention
-## Overview of our method
+## Overview
 ![Illustration](./image/proposed_method_overview.png)
 > Overview of proposed method, which consists of three subnetworks $f_n$, $f_r$, $f_c$.
 
